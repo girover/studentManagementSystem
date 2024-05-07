@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<title>Students Administration System</title>
+	<meta content="" name="description">
+	<meta content="" name="keywords">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.gstatic.com" rel="preconnect">
+	<link
+		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+		rel="stylesheet">
+
+	<link rel="stylesheet" href="<%= asset('/lib/bootstrap/css/bootstrap.css') %>" />
+	<!-- <link rel="stylesheet" href="<%= url.asset('/css/tailwind-colors.min.css') %>" /> -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+	<link rel="stylesheet" href="<%= asset('/css/style.css') %>" />
+</head>
+
+<body>
+
+	<!-- ======= Header ======= -->
+	<%- include('components/header') %>
+		<!-- ======= Sidebar ======= -->
+		<%- include('components/sidebar') %>
+			<!-- End Sidebar-->
+
+			<main id="main" class="main">
+
+				<div class="pagetitle">
+					<nav>
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="<%= action('/')%>">Home</a></li>
+							<!-- @RenderSection("breadcrumb", required: false) -->
+						</ol>
+					</nav>
+				</div><!-- End Page Title -->
+				<!-- Render Body -->
+				<%- body %>
+
+				<% if(typeof flashMessage !== 'undefined') { %>
+					<%- include('./components/toast', {message:flashMessage}) %>
+				<% } %>
+			</main><!-- End #main -->
+			<!-- ======= Footer ======= -->
+			<%- include('components/footer') %>
+				<!-- End Footer -->
+				<!-- Modal Add Student -->
+				<div class="modal fade" id="modal-add-student" tabindex="-1" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header bg-warning text-white">
+								<h1 class="modal-title fs-5" id="exampleModalLabel"> <i class="fa fa-plus"></i> Add new student
+								</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="row">
+									<div class="col-12">
+										<label for="studentName">Name</label>
+										<input class="form-control" type="text" id="input-student-name" name="studentName"
+										value="" />
+									</div>
+									<div class="col-12">
+										<label for="studentEmail">Email</label>
+										<input class="form-control" type="email" id="input-student-email"
+											name="studentEmail" value="" />
+									</div>
+									<div class="col-12">
+										<label for="studentSemester">Semester</label>
+										<input class="form-control" type="number" id="input-student-semester"
+											name="studentSemester" value="" />
+									</div>
+									<div class="col-12">
+										<label for="studentEducation">Education</label>
+										<select class="form-control" id="input-student-education" name="studentEducation">
+											<% educations.forEach(education=> {%>
+												<option value="<%= education._id %>">
+													<%= education.name %>
+												</option>
+												<% })%>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
+										class="fa fa-circle-xmark"></i> Cancel</button>
+								<button type="submit" id="modal-btn-add-student" class="btn btn-success"><i
+										class="fa fa-plus"></i> Add</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal Delete -->
+				<div class="modal fade" id="modal-delete" tabindex="-1" aria-labelledby="exampleModalLabel"
+					aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header bg-danger text-white">
+								<h1 class="modal-title fs-5" id="exampleModalLabel"> <i class="fa fa-trash"></i> Delete
+								</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal"
+									aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								Are you sure fot deleting the item?
+							</div>
+							<div class="modal-footer">
+								<form action="" method="post" id="form-delete-item">
+									<%- method('delete') %>
+									<%- csrf() %>
+									<button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i
+											class="fa fa-circle-xmark"></i> No</button>
+									<button type="submit" id="modal-btn-delete-student" class="btn btn-success"><i
+											class="fa fa-circle-check"></i> Yes</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript" src="<%= asset('lib/jQuery/jquery.min.js')%>"></script>
+				<script type="text/javascript" src="<%= asset('lib/bootstrap/js/bootstrap.bundle.min.js')%>"></script>
+				<script type="text/javascript" src="<%= asset('lib/bootstrap/js/bootstrap.esm.min.js')%>"></script>
+				<script type="text/javascript" src="<%= asset('lib/bootstrap/js/bootstrap.min.js')%>"></script>
+				<script type="text/javascript" src="<%= asset('js/main.js')%>"></script>
+</body>
+
+</html>

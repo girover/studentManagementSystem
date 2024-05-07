@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2><%= model.education.name %></h2>
+            <p><%= model.education.smesters %></p>
+            <p><%= model.education.description %></p>
+        </div>
+    </div>
+    <h4>Total students in this education <span class="text-danger fw-bold"><%= model.students.length %></span></h4>
+    <div class="row">
+        <% model.students.forEach((student) => { %>
+            <div class="col-3">
+                <%- include('../components/students/studentCard', {student}) %>
+            </div>
+        <% }); %>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div aria-live="polite" aria-atomic="true" class="toast-container text-white position-fixed top-0 end-0 p-3" style="z-index: 1000;">
+    <div id="liveToast" class="toast bg-<%= message.type %> fade" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header bg-<%= message.type %> text-white">
+            <strong class="me-auto"><%= message.title%></strong>
+            <small><%= message.subtitle%></small>
+        </div>
+        <div class="toast-body">
+            <%= message.content %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<select id="education" name="education" class="form-control">
+    <% educations.forEach(function(education) { %>
+        <option value="<%= education._id %>">
+            <%= education.name %>
+        </option>
+    <% }); %>
+</select>

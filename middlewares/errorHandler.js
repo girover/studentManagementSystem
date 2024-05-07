@@ -1,14 +1,15 @@
-const Result = require('../Http/result');
+const Result = require('../core/Http/result');
 
 module.exports = function (err, req, res, next) {
 
-    let result = global.globalResponseResult;
+    const details = err.details || err.stack || {};
+    const status = err.status || 500;
+    const message = err.message || 'Internal Server Error';
+
+    if(req.isWeb){
+        res.status(status).render('errors/' + status, {message, details, status});
+        return;
+    }
     
-    res.status(500).json({
-        error:{
-            message: err.message || 'Internal Server Error',
-            //stack: err.stack,
-            request:result.request
-        }
-    });
+    res.status(status).json(Result.error(message, details, status));
 }

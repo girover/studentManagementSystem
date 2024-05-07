@@ -1,4 +1,4 @@
-const studentsService = require('../services/studentService');
+const studentsService = require('../../core/services/studentService');
 
 /**
  * Students Controller
@@ -11,13 +11,17 @@ module.exports = {
     get: async(req, res, next) => {
         try {
             const result = await studentsService.getAll();
-            res.status(200).json(result);            
+            res.status(result.status).json(result);            
         } catch (error) { next(error); }
     },
 
+    /**
+     * Get student by id
+     */
     getById: async(req, res, next) => {
         try {
-            res.status(200).json(await studentsService.getById(req.params.id));
+            let result = await studentsService.getById(req.params.id);
+            res.status(result.status).json(result);
         } catch (error) {next(error);}
     },
 
@@ -26,9 +30,8 @@ module.exports = {
      */
     create: async(req, res, next) => {
         try {
-            let student = await studentsService.create(req.body.name, req.body.email, req.body.semester, req.body.education);
-            
-            res.status(201).json(student);         
+            let result = await studentsService.create(req.body);            
+            res.status(result.status).json(result);         
         } catch (error) { next(error) };
     },
 
@@ -37,8 +40,8 @@ module.exports = {
      */
     update: async(req, res, next) => {
         try {
-            let student = await studentsService.update(req.params.id, req.body.name, req.body.email, req.body.semester, req.body.education);
-            res.status(200).json(student);
+            let result = await studentsService.update(req.params.id, req.body);
+            res.status(result.status).json(result);
         } catch (error) { next(error)}
     },
 
@@ -48,7 +51,7 @@ module.exports = {
     delete: async(req, res, next) => {
         try {
             let result = await studentsService.delete(req.params.id);
-            res.status(200).json(result);
+            res.status(result.status).json(result);
         } catch (error) { next(error)}
     },
 }

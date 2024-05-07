@@ -10,8 +10,13 @@
   "author": "Majed Farhan",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
+    "config": "^3.3.11",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "express-partials": "^0.3.0",
+    "express-session": "^1.18.0",
     "mongoose": "^8.3.2",
     "morgan": "^1.10.0"
   },

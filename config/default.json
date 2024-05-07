@@ -1,0 +1,21 @@
+{
+    "app": {
+        "name": "Student Management System",
+        "version": "1.0.0",
+        "environment": "development",
+        "port": 3000,
+        "baseUrl": "http://localhost:3000",
+        "apiPrefix": "/api"
+    },
+    "database": {
+        "host": "localhost",
+        "port": 27017,
+        "name": "studentManagementSystem",
+        "user": "",
+        "password": "",
+        "options": {
+            "useNewUrlParser": true,
+            "useUnifiedTopology": true
+        }
+    }
+}

@@ -1,0 +1,35 @@
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">List Of Users</h5>
+		<div class="d-flex justify-content-between align-items-start">
+			<a class="btn btn-sm btn-dark shadow mb-2" href="<%= action('users', 'create') %>"><i class="fa fa-user-plus"></i> New</a>
+			<!-- <vc:education-dropdown linkable="true" /> -->
+		</div>
+		<table class="table table-sm table-striped table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Username</th>
+					<th>Email</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% users.forEach((user) => { %>
+					<tr class="">
+						<td><%= user._id %></td>
+						<td><%= user.username %></td>
+						<td><%= user.email %></td>
+						<td>
+							<button type="button" class="btn btn-sm btn-danger btn-delete" data-bs-toggle="modal" data-href="<%= action('users', user._id) %>" data-bs-target="#modal-delete" data-id="<%= user.Id %>" data-name="<%= user.username%>">
+								<i class="fa fa-trash"></i>
+							</button>
+							<a class="btn btn-sm btn-primary" href="<%= action('users', user._id, 'edit') %>"><i class="fa fa-edit"></i></a>
+							<a class="btn btn-sm btn-dark"><i class="fa fa-id-card"></i></a>
+						</td>
+					</tr>
+				<% }) %>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,10 +1,9 @@
-const educationService = require('../services/educationService');
+const educationService = require('../../core/services/educationService');
 
 /**
  * Edusctions Controller
  */
 module.exports = {
-
     /**
      * Get all students
      */
@@ -26,7 +25,7 @@ module.exports = {
      */
     create: async(req, res, next) => {
         try {
-            let education = await educationService.create(req.body.name, req.body.semesters, req.body.description);
+            let education = await educationService.create(req.body);
             
             res.status(201).json(education);         
         } catch (error) { next(error) };
@@ -37,7 +36,7 @@ module.exports = {
      */
     update: async(req, res, next) => {
         try {
-            let education = await educationService.update(req.params.id, req.body.name, req.body.semesters, req.body.description);
+            let education = await educationService.update(req.param('id'), req.body);
             res.status(200).json(education);
         } catch (error) { next(error)}
     },

@@ -1,0 +1,39 @@
+<div class="card mx-auto" style="max-width:700px;">
+	<div class="card-body">
+		<h5 class="card-title"><i class="fa fa-user-plus"></i> Add New User</h5>
+		<form action="<%= action('users')%>" method="post" class="row g-3">
+			<% if(errorsAny()) { %>
+				<div class="text-danger">
+					<% errors.forEach((error)=>{ %>
+						<p>
+							<%= error.message%>
+						</p>
+						<% }) %>
+				</div>
+				<% } %>
+					<div class="col-12">
+						<label for="username" class="form-label">Username</label>
+						<input id="username" name="username" value="<%= old('username') %>" class="form-control">
+					</div>
+					<div class="col-12">
+						<label for="email" class="form-label">email</label>
+						<input type="email" name="email" value="<%= old('email') %>" id="email" class="form-control">
+					</div>
+					<div class="col-12">
+						<label for="password" class="form-label">Password</label>
+						<input type="password" id="password" name="password" value="<%= old('password') %>"
+							class="form-control">
+					</div>
+					<div class="col-12">
+						<label for="password-confirm" class="form-label">Password Confirm</label>
+						<input type="password" id="password-confirm" name="password_confirm"
+							value="<%= old('password_confirm') %>" class="form-control">
+					</div>
+					<div class="text-center d-flex justify-content-between">
+						<button type="submit" class="btn btn-sm btn-dark"><i class="fa fa-plus-circle"></i>
+							Create</button>
+						<a class="btn btn-sm btn-danger" href="<%= url.back() %>"><i class="fa fa-cancel"></i> Cancel</a>
+					</div>
+		</form>
+	</div>
+</div>

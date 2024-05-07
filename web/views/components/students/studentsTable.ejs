@@ -1,0 +1,41 @@
+<div class="card">
+	<div class="card-body">
+		<h5 class="card-title">List Of Students</h5>
+		<div class="d-flex justify-content-between align-items-start">
+			<a class="btn btn-sm btn-dark shadow mb-2" href="<%= action('students', 'create') %>"><i class="fa fa-user-plus"></i> New</a>
+			<!-- <vc:education-dropdown linkable="true" /> -->
+		</div>
+		<table class="table table-sm table-striped table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Education</th>
+					<th>Email</th>
+					<th>Semester</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% students.forEach((student) => { %>
+					<tr class="">
+						<td><%= student._id %></td>
+						<td><%= student.name %></td>
+						<td><%= student.education?.name %></td>
+						<td><%= student.email %></td>
+						<td><%= student.semester %></td>
+						<td>
+							<button type="button" class="btn btn-sm btn-danger btn-delete" data-bs-toggle="modal" data-href="<%= action('students', student._id) %>" data-bs-target="#modal-delete" data-id="<%= student.Id %>" data-name="<%= student.name%>">
+								<i class="fa fa-trash"></i>
+							</button>
+							<a class="btn btn-sm btn-primary" href="<%= action('students', student._id, 'edit') %>"><i class="fa fa-edit"></i></a>
+							<a class="btn btn-sm btn-dark" href="<%= action('students', student._id) %>">
+								<i class="fa fa-id-card"></i>
+							</a>
+						</td>
+					</tr>
+				<% }) %>
+			</tbody>
+		</table>
+	</div>
+</div>
