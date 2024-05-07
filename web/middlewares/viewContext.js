@@ -61,19 +61,12 @@ function flash(){
  */
 function view(path, viewModel = {}){
 
-    //this.locals.model = {};
     if(Object.keys(viewModel).length == 0){
         viewModel = [];
     }
     this.locals.model = viewModel;
-    // if(Object.keys(viewModel).length !== 0){
-    //     this.locals.model = viewModel;
-    //     this.render(path);
-    //     return;
-    // }
 
-    this.render(path);    
-    // this.render(path, viewModel);    
+    this.render(path);  
 }
 
 function title(title){

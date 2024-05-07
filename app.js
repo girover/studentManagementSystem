@@ -12,10 +12,8 @@ const apiRouter = require('./routers/api');
 const webRouter = require('./routers/web');
 const viewContext = require('./web/middlewares/viewContext');
 const session = require('express-session');
-const applicationBuilder = require('./core/application');
 
 const app = express();
-const application = new applicationBuilder(app);
 mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, { useNewUrlParser: true, useUnifiedTopology: true });
 
 

@@ -1,4 +1,3 @@
-const Result = require('../../core/Http/result')
 
 module.exports = function (req, res, next) {
     
